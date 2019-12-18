@@ -6,7 +6,6 @@ from django.contrib.gis.geos import Point
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import render_to_string
 from django.templatetags.static import static
-from django.utils import six
 from django.utils.http import urlencode
 
 from mapwidgets.constants import STATIC_MAP_PLACEHOLDER_IMAGE
@@ -93,7 +92,7 @@ class GooglePointFieldWidget(BasePointFieldMapWidget):
             attrs = dict()
 
         field_value = {}
-        if value and isinstance(value, six.string_types):
+        if value and isinstance(value, str):
             value = self.deserialize(value)
             longitude, latitude = value.coords
             field_value["lng"] = longitude
